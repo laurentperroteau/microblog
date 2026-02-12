@@ -27,6 +27,7 @@ export default function(eleventyConfig) {
       output: "_site",
       includes: "_includes"
     },
+    pathPrefix: "/microblog/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk"
   };
