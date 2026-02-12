@@ -1,4 +1,7 @@
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+
 export default function(eleventyConfig) {
+  eleventyConfig.addPlugin(syntaxHighlight);
   // Filtre pour formater les dates
   eleventyConfig.addFilter("date", (date, format) => {
     const d = date === "now" ? new Date() : new Date(date);
