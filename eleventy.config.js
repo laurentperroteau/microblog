@@ -1,7 +1,7 @@
 export default function(eleventyConfig) {
   // Filtre pour formater les dates
   eleventyConfig.addFilter("date", (date, format) => {
-    const d = new Date(date);
+    const d = date === "now" ? new Date() : new Date(date);
     const formats = {
       "%Y-%m-%d": () => d.toISOString().split("T")[0],
       "%d/%m/%Y": () => d.toLocaleDateString("fr-FR"),
