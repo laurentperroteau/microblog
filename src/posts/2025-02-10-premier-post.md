@@ -1,6 +1,5 @@
 ---
 title: Mon premier post
-description: Bienvenue sur mon micro-blog.
 date: 2025-02-11
 ---
 
