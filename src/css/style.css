@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #333;
+}
+
+header {
+  margin-bottom: 2rem;
+}
+
+nav a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+main {
+  min-height: 60vh;
+}
+
+article {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+article:last-child {
+  border-bottom: none;
+}
+
+time {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+h1, h2 {
+  margin-top: 0;
+}
+
+a {
+  color: #0066cc;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  color: #666;
+  font-size: 0.9rem;
+}
