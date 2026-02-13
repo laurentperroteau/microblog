@@ -1,11 +1,11 @@
 ---
-title: Ne pas tester l'implémentions dans les tests unitaires
+title: Ne pas tester l'implémentation dans les tests unitaires
 date: 2025-02-11
 ---
 
-# Ne pas tester l'implémentions dans les tests unitaires
+# Ne pas tester l'implémentation dans les tests unitaires
 
-## ❌ DON'T: Test implementation details
+## ❌ DON'T: Tester les détails d'implémentation
 
 ```typescript
 it('should call findUserById', async () => {
@@ -17,11 +17,11 @@ it('should call findUserById', async () => {
 });
 ```
 
-**Why is this bad?** If you refactor the service (change call order, add cache, rename method), the test breaks even though the **business logic is still correct**. Tests become a barrier to refactoring.
+**Pourquoi c'est problématique ?** Si vous refactorisez le service (changez l'ordre des appels, ajoutez un cache, renommez une méthode), le test échoue alors que la **logique métier est toujours correcte**. Les tests deviennent un frein au refactoring.
 
 ---
 
-## ✅ DO: Test return values
+## ✅ DO: Tester les valeurs de retour
 
 ```typescript
 it('should return user profile with computed fields', async () => {
@@ -40,11 +40,11 @@ it('should return user profile with computed fields', async () => {
 });
 ```
 
-**Why is this good?** You can freely refactor the implementation as long as the **behavior** (input → output) stays the same.
+**Pourquoi c'est mieux ?** Vous pouvez refactoriser librement l'implémentation tant que le **comportement** (entrée → sortie) reste le même.
 
 ---
 
-## ❌ DON'T: Put side effects in the service
+## ❌ DON'T: Mettre les effets de bord dans le service
 
 ```typescript
 async function createOrder(params: {
@@ -62,7 +62,7 @@ async function createOrder(params: {
 
 ---
 
-## ✅ DO: Return data, let caller handle side effects
+## ✅ DO: Retourner des données, laisser l'appelant gérer les effets de bord
 
 ```typescript
 // Service returns data
@@ -93,10 +93,10 @@ app.post('/orders', async (req, res) => {
 
 ---
 
-## Summary
+## Résumé
 
 | ❌ Don't | ✅ Do |
 |----------|-------|
 | `expect(mock).toHaveBeenCalled()` | `expect(result).toEqual(...)` |
-| Side effects in service | Service returns data |
-| Test implementation | Test behavior (input → output) |
+| Effets de bord dans le service | Le service retourne des données |
+| Tester l'implémentation | Tester le comportement (entrée → sortie) |
