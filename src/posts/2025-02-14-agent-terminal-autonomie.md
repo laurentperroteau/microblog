@@ -50,6 +50,4 @@ while(tool_call):
 
 Mais cette boucle n'a de sens que si les outils disponibles sont puissants. Et le terminal, c'est **tous les outils**.
 
----
-
 *Source : [Claude Code Deep Dive](https://www.youtube.com/watch?v=RFKCzGlAU6Q&t=3135s)*
