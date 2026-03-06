@@ -5,6 +5,8 @@ date: 2026-03-05
 
 # Pourquoi les bases de données ne doivent pas être publiques
 
+> Sur une seule machine (VPS classique, sans besoin de scaling horizontal ou de haute disponibilité), c'est simple : la BDD écoute sur localhost, le firewall bloque tout sauf HTTP/HTTPS, on n'expose que ce qu'on veut, et on a accès à internet par défaut. Mais dès qu'on passe sur un réseau de machines (AWS, GCP, Azure...), ça se complique.
+
 En 2022, des chercheurs ont trouvé 810 snapshots RDS AWS exposés publiquement par erreur. 250 l'étaient depuis plus d'un mois. Données de santé, mots de passe, clés SSH — tout ça accessible à n'importe qui avec un compte AWS.
 
 ## Défense en profondeur
@@ -21,7 +23,7 @@ Une BDD publique, ça veut dire :
 Si la BDD est dans un VPC privé, le code qui y accède doit y être aussi. Sur une stack serverless AWS, ça donne :
 
 - **Lambdas dans le VPC** : cold starts plus lents
-- **NAT Gateway** : pour que les Lambdas aient internet (~$30-100/mois)
+- **NAT Gateway** : pour que les Lambdas aient accès à internet
 - **Bastion ou SSM** : pour que les devs accèdent à la base
 
 Plus complexe, plus cher, mais c'est le prix pour cocher les cases conformité.
