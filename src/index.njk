@@ -5,11 +5,15 @@ title: Accueil
 
 <h1>Microblog</h1>
 
-<section>
+<section class="posts">
   {% for post in collections.posts %}
-    <article>
-      <time datetime="{{ post.date | date('%Y-%m-%d') }}">{{ post.date | date("%d/%m/%Y") }}</time>
-      {{ post.content | safe }}
+    <article class="post">
+      <aside class="post-meta">
+        <time datetime="{{ post.date | date('%Y-%m-%d') }}">{{ post.date | date("%d %b %Y") }}</time>
+      </aside>
+      <div class="post-content">
+        {{ post.content | safe }}
+      </div>
     </article>
   {% else %}
     <p>Aucun post pour le moment.</p>

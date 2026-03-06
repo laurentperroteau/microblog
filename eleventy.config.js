@@ -5,10 +5,12 @@ export default function(eleventyConfig) {
   // Filtre pour formater les dates
   eleventyConfig.addFilter("date", (date, format) => {
     const d = date === "now" ? new Date() : new Date(date);
+    const moisFr = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep", "oct", "nov", "déc"];
     const formats = {
       "%Y-%m-%d": () => d.toISOString().split("T")[0],
       "%d/%m/%Y": () => d.toLocaleDateString("fr-FR"),
-      "%Y": () => d.getFullYear().toString()
+      "%Y": () => d.getFullYear().toString(),
+      "%d %b %Y": () => `${d.getDate()} ${moisFr[d.getMonth()]} ${d.getFullYear()}`
     };
     return formats[format] ? formats[format]() : d.toISOString();
   });
