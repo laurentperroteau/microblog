@@ -5,13 +5,9 @@ date: 2026-04-10
 
 # Le problème N+1
 
-Au lieu de faire une seule requête qui récupère tout ce dont tu as besoin, tu fais 1 requête pour la liste, puis N requêtes supplémentaires — une par élément. Sur 50 éléments, ça fait 51 requêtes au lieu d'une ou deux.
+Le red flag classique : une requête (SQL ou HTTP) dans un `.map()` ou un `Promise.all()` qui fait un appel async à chaque itération. Dans les logs, tu vois la même requête répétée X fois avec juste l'ID qui change.
 
-Chaque requête a un coût fixe : connexion TCP, TLS, aller-retour réseau. Le compute est souvent négligeable, c'est cet overhead multiplié par N qui tue.
-
-## Comment le repérer
-
-Le red flag classique : une requête (SQL ou HTTP) dans une boucle. Un `.map()` ou un `.forEach()` qui fait un appel async à chaque itération. Dans les logs, tu vois la même requête répétée X fois avec juste l'ID qui change.
+Le résultat : 1 requête pour la liste, puis N requêtes supplémentaires — une par élément. Sur 50 éléments, ça fait 51 requêtes au lieu d'une ou deux. Chaque requête a un coût fixe (connexion TCP, TLS, aller-retour réseau) — le compute est souvent négligeable, c'est cet overhead multiplié par N qui tue.
 
 ## Comment le résoudre
 
