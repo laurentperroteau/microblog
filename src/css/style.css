@@ -165,3 +165,9 @@ footer {
   color: #666;
   font-size: 0.85rem;
 }
+
+pre.mermaid {
+  background: none;
+  border: none;
+  text-align: center;
+}

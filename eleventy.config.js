@@ -2,6 +2,17 @@ import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 export default function(eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
+  // Blocs ```mermaid rendus côté client par mermaid.js (cf. base.njk)
+  eleventyConfig.amendLibrary("md", (md) => {
+    const fence = md.renderer.rules.fence;
+    md.renderer.rules.fence = (tokens, idx, ...rest) => {
+      const token = tokens[idx];
+      if (token.info.trim() === "mermaid") {
+        return `<pre class="mermaid">${md.utils.escapeHtml(token.content)}</pre>\n`;
+      }
+      return fence(tokens, idx, ...rest);
+    };
+  });
   // Filtre pour formater les dates
   eleventyConfig.addFilter("date", (date, format) => {
     const d = date === "now" ? new Date() : new Date(date);
